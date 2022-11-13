@@ -8,15 +8,16 @@ def subscribe(request):
     subscribe_form = SubscribeForm()
 
     if request.POST:
-        first_name = request.POST["first_name"]
-        last_name = request.POST["last_name"]
-        email = request.POST["email"]
+        subscribe_form = SubscribeForm(request.POST)
 
-        if email == "":
-            email_error_empty = "No email entered"
+        if subscribe_form.is_valid():
+            print("Form is Valid")
 
-        subscribe = Subscribe(first_name=first_name, last_name=last_name, email=email)
-        subscribe.save()
+        # if email == "":
+        #     email_error_empty = "No email entered"
+
+        # subscribe = Subscribe(first_name=first_name, last_name=last_name, email=email)
+        # subscribe.save()
 
     context = {
         "form": subscribe_form,
