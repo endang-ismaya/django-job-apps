@@ -13,7 +13,7 @@
             {% csrf_token %}
 
             <!-- form start -->
-            {{ form }}
+            {{ form.as_p }}
             <!-- form end -->
 
             <button type="submit">Submit</button>

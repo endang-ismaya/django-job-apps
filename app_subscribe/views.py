@@ -1,8 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import Subscribe
 from .forms import SubscribeForm
 
-# Create your views here.
+
+def thank_you(request):
+    context = {}
+    return render(
+        request=request, template_name="app_subscribe/thankyou.html", context=context
+    )
+
+
 def subscribe(request):
     email_error_empty = ""
     subscribe_form = SubscribeForm()
@@ -11,13 +19,15 @@ def subscribe(request):
         subscribe_form = SubscribeForm(request.POST)
 
         if subscribe_form.is_valid():
-            print("Form is Valid")
+            email = subscribe_form.cleaned_data["email"]
+            first_name = subscribe_form.cleaned_data["first_name"]
+            last_name = subscribe_form.cleaned_data["last_name"]
 
-        # if email == "":
-        #     email_error_empty = "No email entered"
-
-        # subscribe = Subscribe(first_name=first_name, last_name=last_name, email=email)
-        # subscribe.save()
+            subscribe_new = Subscribe(
+                first_name=first_name, last_name=last_name, email=email
+            )
+            subscribe_new.save()
+            return redirect(reverse("app_subscribe:thank_you"))
 
     context = {
         "form": subscribe_form,
