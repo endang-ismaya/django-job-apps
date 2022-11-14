@@ -19,18 +19,19 @@ def subscribe(request):
         subscribe_form = SubscribeForm(request.POST)
 
         if subscribe_form.is_valid():
-            email = subscribe_form.cleaned_data["email"]
-            first_name = subscribe_form.cleaned_data["first_name"]
-            last_name = subscribe_form.cleaned_data["last_name"]
+            # email = subscribe_form.cleaned_data["email"]
+            # first_name = subscribe_form.cleaned_data["first_name"]
+            # last_name = subscribe_form.cleaned_data["last_name"]
 
-            subscribe_new = Subscribe(
-                first_name=first_name, last_name=last_name, email=email
-            )
-            subscribe_new.save()
+            # subscribe_new = Subscribe(
+            #     first_name=first_name, last_name=last_name, email=email
+            # )
+            # subscribe_new.save()
+            subscribe_form.save()
             return redirect(reverse("app_subscribe:thank_you"))
 
     context = {
         "form": subscribe_form,
         "email_error_empty": email_error_empty,
     }
-    return render(request, "app_subscribe/subscribe.html", context)
+    return render(request, "app_subscribe/subscribe_form.html", context)
