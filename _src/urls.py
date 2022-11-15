@@ -20,4 +20,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("app_one.urls")),
     path("subscribe/", include("app_subscribe.urls")),
+    path("image-upload/", include("app_upload.urls")),
 ]
