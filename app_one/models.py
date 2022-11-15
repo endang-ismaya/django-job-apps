@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from enum import Enum
 
 
 class Skill(models.Model):
@@ -29,7 +30,17 @@ class Location(models.Model):
         return f"{self.street}, {self.city}, {self.country}"
 
 
+class JOB_TYPE(Enum):
+    FULL_TIME = "Full Time"
+    PART_TIME = "Part Time"
+
+
 class JobPost(models.Model):
+    JOB_TYPE_CHOICES = [
+        (JOB_TYPE.FULL_TIME.value, JOB_TYPE.FULL_TIME.value),
+        (JOB_TYPE.PART_TIME.value, JOB_TYPE.PART_TIME.value),
+    ]
+
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     date = models.DateTimeField(auto_now_add=True)
@@ -39,6 +50,12 @@ class JobPost(models.Model):
     location = models.OneToOneField(Location, on_delete=models.CASCADE, null=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
     skills = models.ManyToManyField(Skill)
+    job_type = models.CharField(
+        max_length=200,
+        null=False,
+        choices=JOB_TYPE_CHOICES,
+        default=JOB_TYPE.FULL_TIME.value,
+    )
 
     def save(self, *args, **kwargs):
         if not self.id:

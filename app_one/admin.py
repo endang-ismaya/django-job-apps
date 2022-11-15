@@ -3,7 +3,15 @@ from .models import JobPost, Location, Author, Skill
 
 
 class JobAdmin(admin.ModelAdmin):
-    list_display = ("__str__", "title", "date", "salary", "slug", "description")
+    list_display = (
+        "__str__",
+        "title",
+        "date",
+        "salary",
+        "slug",
+        "description",
+        "job_type",
+    )
     list_filter = ("date", "salary", "expiry")
     search_fields = ("title",)
     search_help_text = "Write in your query and hit enter!"
@@ -20,6 +28,7 @@ class JobAdmin(admin.ModelAdmin):
                     "location",
                     "author",
                     "skills",
+                    "job_type",
                 ),
                 # "classes": ("collapse",),
             },

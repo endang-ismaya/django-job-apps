@@ -5,5 +5,5 @@ app_name = "app_one"
 
 urlpatterns = [
     path("", views.job_list, name="jobs_home"),
-    path("job/<int:id>", views.job_detail, name="jobs_detail"),
+    path("jobs/<slug:slug>", views.job_detail, name="jobs_detail"),
 ]
