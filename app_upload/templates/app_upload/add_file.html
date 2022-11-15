@@ -4,21 +4,20 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Image Upload</title>
+        <title>File Upload</title>
     </head>
     <body>
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <h1>Image Upload</h1>
+            <h1>File Upload</h1>
             {{form.as_p}}
-            <button type="submit">Submit</button>
+            <button type="submit">Upload File</button>
         </form>
 
         {% if saved_obj %}
         <h2>Upload Successful:</h2>
-        <img src="{{ saved_obj.image.url }}" alt="" width="50" />
-        <p>Image Url: {{ saved_obj.image.url }}</p>
-        <p>Image Description: {{ saved_obj.description }}</p>
+        <p>File Url: {{ saved_obj.file.url }}</p>
+        <p>File Description: {{ saved_obj.description }}</p>
         {% endif %}
     </body>
 </html>
