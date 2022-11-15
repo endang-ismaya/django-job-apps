@@ -34,4 +34,4 @@ def subscribe(request):
         "form": subscribe_form,
         "email_error_empty": email_error_empty,
     }
-    return render(request, "app_subscribe/subscribe_form.html", context)
+    return render(request, "app_subscribe/email.html", context)
