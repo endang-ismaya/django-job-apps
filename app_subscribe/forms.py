@@ -19,7 +19,7 @@ class SubscribeForm(forms.ModelForm):
             "last_name": _("Lastname"),
             "email": _("Email"),
         }
-        help_texts = {"first_name": _("Chars only no more than 100 chars")}
+        # help_texts = {"first_name": _("Chars only no more than 100 chars")}
         error_messages = {
             "first_name": {
                 "required": _("Please enter a valid 'Firstname' no more than 100 chars")
